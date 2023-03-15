@@ -17,10 +17,10 @@ sleep 1
 done
 } > BioProjects.tsv
 ```
-Contig containment used Mash screen with a t threshold.
+Contig containment used Mash screen with...
 
 ```
-blah
+mash screen ...
 
 ```
 
