@@ -15,7 +15,7 @@ echo "$line" | tr '\n' '\t'
 esearch -db biosample -query $line < /dev/null | elink -target bioproject | efetch -format docsum | xtract -pattern DocumentSummary -element Project_Acc | tr '\n' '\t' && echo ""
 sleep 1
 done
-} < BioProjects.tsv
+} > BioProjects.tsv
 ```
 
 ## Gene flank analysis
