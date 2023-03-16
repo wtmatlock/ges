@@ -20,7 +20,8 @@ done
 Contig containment used Mash screen with...
 
 ```
-mash screen ...
+mash sketch -s 1000000 ./contigs/*.fasta -o contigs
+echo contigs/*.fasta | xargs -n 1 mash screen contigs.msh > mash-output.tsv
 
 ```
 
