@@ -23,6 +23,7 @@ Pairwise contig containment used [Mash](https://github.com/marbl/Mash) (v. 2.2) 
 mash sketch -s 1000000 ./contigs/*.fasta -o contigs
 echo contigs/*.fasta | xargs -n 1 mash screen contigs.msh > mash-output.tsv
 ```
+The Mash screen output is ordered by the contig directory order.
 
 ## Gene flank analysis
 
