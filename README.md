@@ -17,7 +17,7 @@ sleep 1
 done
 } > BioProjects.tsv
 ```
-Pairwise contig containment used [Mash](https://github.com/marbl/Mash) (v. 2.2) screen:
+BioProject accessions were manually curated to remove any meta-analyses which reuse contigs from previous studies. Pairwise contig containment used [Mash](https://github.com/marbl/Mash) (v. 2.2) screen:
 
 ```
 mash sketch -s 1000000 ./contigs/*.fasta -o contigs
