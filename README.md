@@ -17,7 +17,7 @@ sleep 1
 done
 } > BioProjects.tsv
 ```
-Contig containment used Mash screen with...
+Pairwise contig containment used [Mash](https://github.com/marbl/Mash) (v. 2.2) screen:
 
 ```
 mash sketch -s 1000000 ./contigs/*.fasta -o contigs
