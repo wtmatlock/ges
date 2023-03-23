@@ -29,3 +29,9 @@ echo contigs/*.fasta | xargs -n 1 mash screen contigs.msh > mash-output.tsv
 - Flanking sequences were retrierved using [Flanker](https://github.com/wtmatlock/flanker) and a custom [Abricate](https://github.com/tseemann/abricate) database with the NCBI GES-5 nucleotide reference sequence [NG_049137.1](https://www.ncbi.nlm.nih.gov/nuccore/NG_049137.1).
 - Pangraph... 
 - Contig metadata countries were mapped to WHO region using this [table](https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/blob/master/all/all.csv).
+
+## Annotations
+
+```
+datasets download genome accession --inputfile accessions.txt --include gff3
+```
