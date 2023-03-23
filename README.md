@@ -33,5 +33,12 @@ echo contigs/*.fasta | xargs -n 1 mash screen contigs.msh > mash-output.tsv
 ## Annotations
 
 ```
-datasets download genome accession --inputfile accessions.txt --include gff3
+mkdir gffs
+cat contigAccessions.txt | { 
+while read line
+do
+wget "https://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?db=nuccore&report=gff3&id=${line}" -O ./gffs/"$line".gff
+sleep 1
+done
+}
 ```
