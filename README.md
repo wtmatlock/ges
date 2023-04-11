@@ -8,7 +8,7 @@
 
 ### Contig lengths
 
-Contig sequence lengths were calculated using `fastaLengths.py`. Usage is `python3 fastaLengths.py contigs.fa` which outputs `lengths.csv`. Requires `SimpleFastaParser` from [Biopython](https://github.com/biopython/biopython).
+Contig sequence lengths were calculated using `fastaLengths.py`. Usage is `python3 fastaLengths.py contigs.fa` which outputs `lengths.tsv`. Requires `SimpleFastaParser` from [Biopython](https://github.com/biopython/biopython).
 
 ### BioProject accessions
 
