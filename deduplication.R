@@ -33,6 +33,7 @@ library(tidyr)
 bioprojects[bioprojects == ""] <- NA
 bioprojects <- bioprojects %>%
   mutate_at(2:5, ~ replace(., str_detect(., 'PRJNA514245|PRJNA224116'), NA)) %>%
+  # combine the bioproject labels into one string
   unite("bioproject", 2:5, sep = "-", na.rm=TRUE, remove = TRUE)
 # we then combine our bioproject and ncbi tables
 bioprojects <- merge(bioprojects, ncbiGES[c("BioSample", "Contig")], by.x='V1', by.y='BioSample', all.Y=TRUE)
@@ -84,7 +85,7 @@ colnames(pairs) <- c("contig.x", "contig.y")
 # add metadata to pair table
 pairs <- merge(pairs, bioprojects, by.x='contig.x', by.y='contig', all.x=TRUE)
 pairs <- merge(pairs, bioprojects, by.x='contig.y', by.y='contig', all.x=TRUE)
-# filter down pairs to those within the same bioproject
+# filter down our pairs of representative contigs within the same bioproject
 pairs <- pairs[pairs$bioproject.x == pairs$bioproject.y,] 
 
 # now import mash screen table
@@ -122,8 +123,9 @@ containment <- containment %>%
 to.keep <- containment[containment$is.singleton==TRUE,]$rep.x
 
 # now we work on non-singleton bioprojects 
-# if a bioproject as every contig contained in at least one other, we take a (random) longest contig
-# otherise, we can simply remove all the contigs which are contained
+# if a bioproject has every contig contained in at least one other, we take the longest contig
+# if multiple contigs are equally the longest, we choose a random representative 
+# otherise, we can simply remove all the contigs which are contained in another
 containment <- containment %>%
   # drop singletons and self-pairs
   filter(is.singleton==FALSE & rep.x!=rep.y) %>%
@@ -143,7 +145,7 @@ containment <- containment %>%
 # leaving those to keep
 to.keep <- unique(c(to.keep, containment[containment$all.contained==FALSE,]$rep.x))
 
-# finally, let's work on the bioprojects where every contig is contained in another
+# finally, let's work on the bioprojects where every contig is contained in at least one other
 containment <- containment %>%
   filter(all.contained==TRUE) %>%
   group_by(bioproject.x) %>%
@@ -161,10 +163,12 @@ to.keep <- unique(c(to.keep, containment$rep))
 summary <- bioprojects[bioprojects$contig %in% to.keep,]
 length(unique(summary$biosample))==no.biosamples
 length(unique(summary$bioproject))==no.bioprojects
+# we should also have one contig per biosample
+length(unique(summary$contig))==length(unique(summary$biosample))
 
-# write the list of deduplicated contigs
+# write the list of deduplicated contigs with or without file extensions
 write.csv(to.keep, '~/Desktop/contigs.txt', quote=FALSE, row.names=FALSE)
-write.csv(paste0(to.keep, ".fasta"), '~/Desktop/contigs-dedup.txt', quote=FALSE, row.names=FALSE)
+write.csv(paste0(to.keep, ".fasta"), '~/Desktop/contigs.txt', quote=FALSE, row.names=FALSE)
 
 
 
