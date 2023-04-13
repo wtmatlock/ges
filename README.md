@@ -33,7 +33,7 @@ Pairwise contig containment used [Mash](https://github.com/marbl/Mash) (v. 2.2):
 mash sketch -s 1000000 ./contigs/*.fasta -o contigs
 echo contigs/*.fasta | xargs -n 1 mash screen contigs.msh > mash-output.tsv
 ```
-In the output, Mash will only list the 'screened' contigs, not the 'database' contig that might contain it. For example,
+With this command, Mash will only list the 'screened' contigs, not the contig that we are testing for containment in. For example,
 ```
 x
 a.fasta
