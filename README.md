@@ -59,7 +59,7 @@ a.fasta c.fasta
 b.fasta c.fasta
 c.fasta c.fasta
 ```
-A sense check here is that given *m* contigs, every *(n-1)m+n*-th row should score 1.
+A sense check here is that given *m* contigs, every *(n-1)m+n*-th row should score 1 since we are screening a contig against itself.
 
 ## Annotations
 
