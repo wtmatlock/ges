@@ -33,22 +33,26 @@ Pairwise contig containment used [Mash](https://github.com/marbl/Mash) (v. 2.2):
 mash sketch -s 1000000 ./contigs/*.fasta -o contigs
 echo contigs/*.fasta | xargs -n 1 mash screen contigs.msh > mash-output.tsv
 ```
-With this command, Mash works through the pair-wise comparisons using order of the fasta files in the directory. For example, in
+In the output, Mash will only list the query contigs, not the contigs you are screening. For example,
 ```
+query
 a.fasta
 b.fasta
 c.fasta
 ```
-Mash screen will order the output as
+really means
 ``` 
-a.fasta in b.fasta
-a.fasta in c.fasta
-b.fasta in a.fasta
-b.fasta in c.fasta
-c.fasta in a.fasta
-c.fasta in b.fasta
+screening query
+a.fasta a.fasta
+a.fasta b.fasta
+a.fasta c.fasta
+b.fasta a.fasta
+b.fasta b.fasta
+b.fasta c.fasta
+c.fasta a.fasta
+c.fasta b.fasta
+c.fasta c.fasta
 ```
-but *only* list the second column in the actual output. Therefore, it is useful to record the file order using `ls ./contigs/*.fasta > contig-order.txt`.
 
 ## Annotations
 
