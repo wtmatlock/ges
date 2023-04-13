@@ -33,26 +33,33 @@ Pairwise contig containment used [Mash](https://github.com/marbl/Mash) (v. 2.2):
 mash sketch -s 1000000 ./contigs/*.fasta -o contigs
 echo contigs/*.fasta | xargs -n 1 mash screen contigs.msh > mash-output.tsv
 ```
-In the output, Mash will only list the query contigs, not the contigs you are screening. For example,
+In the output, Mash will only list the 'screened' contigs, not the 'database' contig that might contain it. For example,
 ```
-query
+x
+a.fasta
+b.fasta
+c.fasta
+a.fasta
+b.fasta
+c.fasta
 a.fasta
 b.fasta
 c.fasta
 ```
-really means
+really means scoring the containment of x in y:
 ``` 
-screening query
+x y
 a.fasta a.fasta
-a.fasta b.fasta
-a.fasta c.fasta
 b.fasta a.fasta
-b.fasta b.fasta
-b.fasta c.fasta
 c.fasta a.fasta
+a.fasta b.fasta
+b.fasta b.fasta
 c.fasta b.fasta
+a.fasta c.fasta
+b.fasta c.fasta
 c.fasta c.fasta
 ```
+A sense check here is that given *m* contigs, every *(n-1)m+n*-th row should score 1.
 
 ## Annotations
 
