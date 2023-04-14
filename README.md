@@ -1,4 +1,4 @@
-# GES-5 analysis workflow
+# GES-5 flank analysis workflow
 
 ## Data curation
 
