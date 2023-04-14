@@ -18,8 +18,8 @@ samples=./contigs-blastx-dedup.txt
 f=$(sed -n "$SLURM_ARRAY_TASK_ID"p $samples)
 echo "Working on ${f}"
 
-flanker --gene GES-5 --database GES-5 --fasta_file ./contigs-blastx/"$f" --flank both --window 5000 --include_gene
-flanker --gene GES-5 --database GES-5 --fasta_file ./contigs-blastx/"$f" --flank both --window 10000 --include_gene
+# the '--window' parameter controls the flank length extracted from the contig
+flanker --gene GES-5 --database GES-5 --fasta_file ./contigs-blastx/"$f".fasta --flank both --window 5000 --include_gene
 
 echo "Finished at: "`date`
 echo "****************************************************"
