@@ -75,7 +75,11 @@ sleep 1
 done
 }
 ```
-
+Additional, integron-specific annoations were generated using [Integron Finder](https://github.com/gem-pasteur/Integron_Finder) with the command
+```
+integron_finder ./contigs/*.fasta --gbk --local-max --promoter-attI --lin
+```
+This will output...
 ## Gene flank analysis
 
 - Flanking sequences were extracted using the python tool [Flanker](https://github.com/wtmatlock/flanker) with a custom [Abricate](https://github.com/tseemann/abricate) database containing only the NCBI GES-5 nucleotide reference sequence [NG_049137.1](https://www.ncbi.nlm.nih.gov/nuccore/NG_049137.1). Flanker was run by the Slurm scheduler script `runFlanker.sh` within the Conda environment described [here](https://flanker.readthedocs.io/en/latest/#installation). For a contig called `foo.fasta` and `--window bar`, the output file will be called `foo_GES-5_bar_both_flank.fasta`.
