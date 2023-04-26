@@ -83,7 +83,7 @@ Additional, integron-specific annoations were generated using [Integron Finder](
 ```
 integron_finder ./contigs/*.fasta --gbk --local-max --promoter-attI --lin
 ```
-For each contig, this will output a `.gbk` file containing any *attI*/*attC* annotations.
+For each contig, this wrote a `.integron` file, which we combined with the NCBI annotations for plotting.
 
 ## Clustering flanking sequences
 Pangraph... 
