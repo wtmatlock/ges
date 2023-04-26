@@ -79,7 +79,7 @@ sleep 1
 done
 }
 ```
-Additional, integron-specific annoations were generated using [Integron Finder](https://github.com/gem-pasteur/Integron_Finder) with the command
+Additional, integron-specific annoations were generated using [Integron Finder](https://github.com/gem-pasteur/Integron_Finder) (v. 2.0.2) with the command
 ```
 integron_finder ./contigs/*.fasta --gbk --local-max --promoter-attI --lin
 ```
