@@ -91,7 +91,7 @@ For each contig, this wrote a `.integron` file, which we combined with the NCBI 
 
 The start and end positions of the integrase annotations were extracted from the `.integron` files:
 ```
-awk -F'\t' -v OFS='\t' 'NR>1 && $9=="intI" {print $2, $4, $5}' .*.integrons > integrase-positions.tsv
+awk -F'\t' -v OFS='\t' 'NR>1 && $9=="intI" {print $2, $4, $5}' ./*.integrons > integrase-positions.tsv
 ```
 Then...
 
