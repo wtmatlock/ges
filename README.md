@@ -85,9 +85,9 @@ Additional, integron-specific annoations were generated using [Integron Finder](
 ```
 integron_finder ./contigs/*.fasta --local-max --promoter-attI --lin
 ```
-For each contig, this wrote a `.integron` file, which we combined with the NCBI annotations for plotting using
+For each contig, this wrote a `.integron` file, which we combined using
 ```
-awk 'FNR==1 && NR!=1{next;}{print}' ./integron-finder-output/*/*.integrons > integron-finder-output.tsv
+awk 'FNR==1 && NR!=1{next;}{print}' ./*.integrons > integron-finder-output.tsv
 ```
 
 ## Integrase SNV profiles
