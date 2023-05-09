@@ -92,11 +92,16 @@ awk 'FNR==1 && NR!=1{next;}{print}' ./*.integrons > integron-finder-output.tsv
 
 ## Integrase SNV profiles
 
-The start and end positions of the integrase annotations were extracted from the `.integron` files:
+The start/end positions and strand of the integrase annotations were extracted from the `.integron` files using
 ```
-awk -F'\t' -v OFS='\t' 'NR>1 && $9=="intI" {print $2, $4, $5}' ./*.integrons > integrase-positions.tsv
+awk -F'\t' -v OFS='\t' 'NR>1 && $9=="intI" {print $2, $4, $5, $^}' ./*.integrons > integrase-positions.tsv
 ```
-Then, we extracted the integrase sequences using `extractIntegrase.py`. The Usage is `python3 extractIntegrase.py integrase-positions.tsv` which outputs individual files `foo-integrase.fasta`. NB, the directory paths might need updating in the script.
+Since the full contigs were used, and not the GES-5 flanking sequences, some contained multiple *intI* annotations. These were manually removed at this stage by comparing integrase and GES-5 annotation positios. We extracted the integrase sequences using `extractIntegrase.py`. The Usage is `python3 extractIntegrase.py integrase-positions.tsv` which outputs individual files `foo-integrase.fasta` and the translated `foo-integrase-prot.fasta`. NB, the directory paths might need updating in the script.
+
+Integrase sequences were aligned using [ClustalW](http://www.clustal.org/clustal2/) (v. 2.1) on slow/accurate mode. The SNP distance matrix was generated using [snp-dists](https://github.com/tseemann/snp-dists) (v. 0.8.2) with default parameters, and SNP constant sites were found using [snp-sites](https://github.com/sanger-pathogens/snp-sites) (v. 2.5.1) with `-C` and otherwise default paramaters. The SNP clustering/heatmap was generated using the script `plotHeatmap.R`.
+
+clustalw slow/accurate mode, snp-sites
+
 
 ## Clustering flanking sequences
 Pangraph... 
