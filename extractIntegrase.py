@@ -12,7 +12,7 @@ for row in data:
     end = int(row[2])
 
     # open the corresponding .fasta file and read in the sequence
-    with open(f'./contigs/{name}.fasta', 'r') as f:
+    with open(f'./{name}.fasta', 'r') as f:
         fasta_data = f.readlines()
     seq = ''.join(fasta_data[1:]).replace('\n', '')
 
@@ -21,4 +21,4 @@ for row in data:
 
     # Write the subsequence to a new .fasta file
     with open(f'./contigs/{name}-integrase.fasta', 'w') as f:
-        f.write(f'>{name}-integrase\n{subseq}\n')
+        f.write(f'>{name}_integrase\n{subseq}\n')
