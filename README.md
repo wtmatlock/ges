@@ -90,6 +90,10 @@ For each contig, this wrote a `.integron` file, which we combined using
 awk 'FNR==1 && NR!=1{next;}{print}' ./*.integrons > integron-finder-output.tsv
 ```
 
+## Transposasable element annotations
+
+We superseded NCBI's transposable element annotations with those generated from the ISfinder database and Abricate. Commands are given in the script `runISfinder.sh`.
+
 ## Integrase SNV profiles
 
 The start/end positions and strand of the integrase annotations were extracted from the `.integron` files using
